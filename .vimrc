@@ -1,5 +1,7 @@
 " Airline status bar show buffers on the top
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+" let airline#extensions#tabline#disable_refresh = 0
 " Airline status bar hide x (filetype) y (file format) and z (line number, etc)
 let g:airline#extensions#default#layout = [ [ 'a', 'c' ], [ 'warning', 'error'] ]
 " Shorten whitespace warning messages
@@ -32,6 +34,18 @@ set colorcolumn=100
 set relativenumber
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 set number
+
+" Highlight search by default
+set hlsearch
+
+" Search function
+map <F4> :execute 'vimgrep /'.expand('<cword>').'/j **' <Bar> cw<CR>
+
+" Do any project specific stuff
+let custom_config_file = '.vim.custom'
+if filereadable(custom_config_file)
+	execute 'source' custom_config_file
+endif
 
 " Plugin manager
 execute pathogen#infect()
