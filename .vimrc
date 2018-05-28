@@ -38,15 +38,29 @@ set number
 " Highlight search by default
 set hlsearch
 
-" Search function
-map <F4> :execute 'vimgrep /'.expand('<cword>').'/j **' <Bar> cw<CR>
-
-" Do any project specific stuff
-let custom_config_file = '.vim.custom'
-if filereadable(custom_config_file)
-	execute 'source' custom_config_file
+" workaround for https://github.com/vim/vim/issues/1start671
+if has("unix")
+  let s:uname = system("echo -n \"$(uname)\"")
+  if !v:shell_error && s:uname == "Linux"
+    set t_BE=
+  endif
 endif
+
+" Search function
+nmap <F4> :execute 'vimgrep /\<'.expand('<cword>').'\>/j **' <Bar> cw<CR>
+
+" Update ctags function
+nmap <F5> :execute '!ctags -R .' <CR><CR>
+
+" Make function
+nmap <F8> :silent make\|redraw!\|cw<CR>
 
 " Plugin manager
 execute pathogen#infect()
+
+" Do any project specific stuff
+let project_config_file = '.project.vimrc'
+if filereadable(project_config_file)
+	execute 'source' project_config_file
+endif
 
