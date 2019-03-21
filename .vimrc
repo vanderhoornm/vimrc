@@ -69,6 +69,11 @@ tmap <F1><F4> <C-W>:4 wincmd w<CR>
 tmap <F1><F5> <C-W>:5 wincmd w<CR>
 tmap <F1><F6> <C-W>:6 wincmd w<CR>
 
+" Copy selected text to clipboard
+xmap <F2> :'<,'>write !xclip -selection clipboard -in<CR><CR>
+" Paste clipboard text before current line
+nmap <F2> :-read !xclip -selection clipboard -out<CR><CR>
+
 " Search function
 nmap <F4> :execute 'vimgrep /\<'.expand('<cword>').'\>/j **' <Bar> cw<CR>
 
