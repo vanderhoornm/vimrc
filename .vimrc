@@ -30,6 +30,10 @@ set tabstop=4
 set textwidth=100
 set colorcolumn=100
 
+" Maintain undo history between sessions
+set undodir=/tmp/.vim/undodir
+set undofile
+
 " Use grey relative numbering plus yellow current line number
 set relativenumber
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
@@ -37,6 +41,11 @@ set number
 
 " Highlight search by default
 set hlsearch
+
+if !&diff
+  " Make colours better
+  set bg=light
+endif
 
 " workaround for https://github.com/vim/vim/issues/1start671
 if has("unix")
@@ -46,11 +55,28 @@ if has("unix")
   endif
 endif
 
+" Split window navigation
+nmap <F1><F1> :1 wincmd w<CR>
+nmap <F1><F2> :2 wincmd w<CR>
+nmap <F1><F3> :3 wincmd w<CR>
+nmap <F1><F4> :4 wincmd w<CR>
+nmap <F1><F5> :5 wincmd w<CR>
+nmap <F1><F6> :6 wincmd w<CR>
+tmap <F1><F1> <C-W>:1 wincmd w<CR>
+tmap <F1><F2> <C-W>:2 wincmd w<CR>
+tmap <F1><F3> <C-W>:3 wincmd w<CR>
+tmap <F1><F4> <C-W>:4 wincmd w<CR>
+tmap <F1><F5> <C-W>:5 wincmd w<CR>
+tmap <F1><F6> <C-W>:6 wincmd w<CR>
+
 " Search function
 nmap <F4> :execute 'vimgrep /\<'.expand('<cword>').'\>/j **' <Bar> cw<CR>
 
 " Update ctags function
 nmap <F5> :execute '!ctags -R .' <CR><CR>
+
+" Pull from svn
+nmap <F6> :execute '!svn up' <CR><CR>
 
 " Make function
 nmap <F8> :silent make\|redraw!\|cw<CR>
