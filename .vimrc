@@ -79,12 +79,24 @@ nmap <F4> :execute 'vimgrep /\<'.expand('<cword>').'\>/j **' <Bar> cw<CR>
 
 " Update ctags function
 nmap <F5> :execute '!ctags -R .' <CR><CR>
+tmap <F5> ctags -R .<CR>
 
 " Pull from svn
-nmap <F6> :execute '!svn up' <CR><CR>
+nmap <F6> :execute '!svn up' <CR>
+tmap <F6> svn up<CR>
 
 " Make function
+nmap <F7> :silent make clean\|redraw!\|cw<CR>
+tmap <F7> make clean<CR>
 nmap <F8> :silent make\|redraw!\|cw<CR>
+tmap <F8> make<CR>
+
+" Next / Prev marker
+nmap <C-N> :cn<CR>
+nmap <C-P> :cp<CR>
+
+" Search highlighted text
+vmap // y/<C-R>"<CR>
 
 " Plugin manager
 execute pathogen#infect()
