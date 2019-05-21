@@ -86,9 +86,9 @@ nmap <F6> :execute '!svn up' <CR>
 tmap <F6> svn up<CR>
 
 " Make function
-nmap <F7> :silent make clean\|redraw!\|cw<CR>
+nmap <F7> :silent make clean<Bar>redraw!<Bar>cw<CR>
 tmap <F7> make clean<CR>
-nmap <F8> :silent make\|redraw!\|cw<CR>
+nmap <F8> :silent make<Bar>redraw!<Bar>cw<CR>
 tmap <F8> make<CR>
 
 " Next / Prev marker
