@@ -5,10 +5,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " Airline status bar hide x (filetype) y (file format) and z (line number, etc)
 let g:airline#extensions#default#layout = [ [ 'a', 'c' ], [ 'warning', 'error'] ]
 " Shorten whitespace warning messages
-let g:airline#extensions#whitespace#trailing_format = 't%s'
-let g:airline#extensions#whitespace#long_format = 'l%s'
-let g:airline#extensions#whitespace#mixed_indent_file_format = 'i%s'
-let g:airline#extensions#whitespace#checks =['long', 'trailing', 'mixed-indent-file']
+let g:airline#extensions#whitespace#checks =[]
 " Airline pretty serarators
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
@@ -90,6 +87,8 @@ nmap <F7> :silent make clean<Bar>redraw!<Bar>cw<CR>
 tmap <F7> make clean<CR>
 nmap <F8> :silent make<Bar>redraw!<Bar>cw<CR>
 tmap <F8> make<CR>
+
+nmap <F10> :botright vertical terminal<CR>
 
 " Next / Prev marker
 nmap <C-N> :cn<CR>
