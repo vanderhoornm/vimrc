@@ -66,21 +66,26 @@ tmap <F1><F4> <C-W>:4 wincmd w<CR>
 tmap <F1><F5> <C-W>:5 wincmd w<CR>
 tmap <F1><F6> <C-W>:6 wincmd w<CR>
 
-" Copy selected text to clipboard
-xmap <F2> :'<,'>write !xclip -selection clipboard -in<CR><CR>
-" Paste clipboard text before current line
-nmap <F2> :-read !xclip -selection clipboard -out<CR><CR>
-
 " Search function
-nmap <F4> :execute 'vimgrep /\<'.expand('<cword>').'\>/j **' <Bar> cw<CR>
+nmap <F4>s :cscope find s <C-R>=expand("<cword>")<CR><CR>
+nmap <F4>g :cscope find g <C-R>=expand("<cword>")<CR><CR>
+nmap <F4>c :cscope find c <C-R>=expand("<cword>")<CR><CR>
+nmap <F4>t :cscope find t <C-R>=expand("<cword>")<CR><CR>
+nmap <F4>e :cscope find e <C-R>=expand("<cword>")<CR><CR>
+nmap <F4>f :cscope find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <F4>i :cscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <F4>d :cscope find d <C-R>=expand("<cword>")<CR><CR>
 
-" Update ctags function
-nmap <F5> :execute '!ctags -R .' <CR><CR>
-tmap <F5> ctags -R .<CR>
+" Update cscope function
+nmap <F5> :execute '!cscope -b -k -R && ctags -R .' <CR><CR>
+tmap <F5> cscope -b -k -R && ctags -R .<CR>
+cscope add cscope.out
+set cscopetag
+set cscopetagorder=1
 
 " Pull from svn
-nmap <F6> :execute '!svn up' <CR>
-tmap <F6> svn up<CR>
+nmap <F6> :execute '!git fetch origin --tags --prune && tig && git merge' <CR>
+tmap <F6> git fetch origin --tags --prune && tig && git merge<CR>
 
 " Make function
 nmap <F7> :silent make clean<Bar>redraw!<Bar>cw<CR>
