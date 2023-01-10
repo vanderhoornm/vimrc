@@ -1,11 +1,8 @@
 " Airline status bar show buffers on the top
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-" let airline#extensions#tabline#disable_refresh = 0
-" Airline status bar hide x (filetype) y (file format) and z (line number, etc)
-let g:airline#extensions#default#layout = [ [ 'a', 'c' ], [ 'warning', 'error'] ]
 " Shorten whitespace warning messages
-let g:airline#extensions#whitespace#checks =[]
+let g:airline#extensions#whitespace#checks =[ 'conflicts' ]
 " Airline pretty serarators
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
@@ -66,6 +63,10 @@ tmap <F1><F4> <C-W>:4 wincmd w<CR>
 tmap <F1><F5> <C-W>:5 wincmd w<CR>
 tmap <F1><F6> <C-W>:6 wincmd w<CR>
 
+" File commands
+nmap <F2><F2> :Files<CR>
+nmap <F2><F3> :NERDTree<CR>
+
 " Search function
 nmap <F4>s :cscope find s <C-R>=expand("<cword>")<CR><CR>
 nmap <F4>g :cscope find g <C-R>=expand("<cword>")<CR><CR>
@@ -83,7 +84,7 @@ cscope add cscope.out
 set cscopetag
 set cscopetagorder=1
 
-" Pull from svn
+" Pull from git
 nmap <F6> :execute '!git fetch origin --tags --prune && tig && git merge' <CR>
 tmap <F6> git fetch origin --tags --prune && tig && git merge<CR>
 
@@ -92,7 +93,8 @@ nmap <F7> :silent make clean<Bar>redraw!<Bar>cw<CR>
 tmap <F7> make clean<CR>
 nmap <F8> :silent make<Bar>redraw!<Bar>cw<CR>
 tmap <F8> make<CR>
-
+"nmap <F9> :!a.out<CR>
+"tmap <F9> a.out<CR>
 nmap <F10> :botright vertical terminal<CR>
 
 " Next / Prev marker
@@ -101,9 +103,6 @@ nmap <C-P> :cp<CR>
 
 " Search highlighted text
 vmap // y/<C-R>"<CR>
-
-" Plugin manager
-execute pathogen#infect()
 
 " Do any project specific stuff
 let project_config_file = '.project.vimrc'
